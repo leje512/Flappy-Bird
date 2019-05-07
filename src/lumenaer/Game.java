@@ -6,7 +6,8 @@ import graphics.GraphicObject;
 import java.util.ArrayList;
 
 /**
- * Base Class for all games.
+ * Base class for all games. Own games must extend this class.
+ *
  */
 public abstract class Game {
 

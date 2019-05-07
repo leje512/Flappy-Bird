@@ -14,15 +14,26 @@ import display.PixelMatrixPanel;
 
 import alexGame.MiniAstroidsGame;
 
+/**
+ * The lumenaer framework class for setting up games and displaying them either on
+ * a real 24x24 pixel matrix or in a window for development pruposes.
+ */
 public class Lumenaer {
 
+    /* flag that determines whether the output shoud be on the real HW-Matrix*/
     private final boolean SENDTOMATRIX;
 
+    /* constants encoding the physical dimensions of the HW-screen*/
     private LumenaerConstants lumenaerConstants;
 
+    /* variables for display on a computer screen*/
     private JFrame frame;
     private JPanel drawPanel;
+
+    /* serial communcation with the HW-Matrix*/
     private HardwareMatrixCommunicator hwCommunicator;
+
+    /* */
     private PixelMatrix pixelMatrix;
 
     private Game currentGame;
