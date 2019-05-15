@@ -6,7 +6,7 @@ public abstract class SpriteGraphicObject extends GraphicObject {
 
 	protected Color[][] sprite;
 
-	public SpriteGraphicObject(int posY, int posX) {
+	public SpriteGraphicObject(int posX, int posY) {
 		super(posX,posY);
 	}
 
@@ -21,7 +21,7 @@ public abstract class SpriteGraphicObject extends GraphicObject {
 	public void render(PixelMatrix matrix) {
 
 		// just copy the sprite to the current Array
-		// only the ones that are not tranparent
+		// only the ones that are not transparent
 		if (sprite != null) {
 			for (int i=0; i < sprite.length; i++ ) {
 				for (int j=0; j < sprite[0].length; j++ ) {
