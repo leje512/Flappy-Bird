@@ -17,7 +17,7 @@ public class MiniAstroidsGame extends Game {
 	public MiniAstroidsGame(PixelMatrix matrix) {
 
 		super(matrix);
-		spaceShip = new SpaceShip(3, 0);
+		spaceShip = new SpaceShip(0, 3);
 		bar = new Bar(15,20,3,1, Color.BLUE);
 
 		graphicElements.add(spaceShip);

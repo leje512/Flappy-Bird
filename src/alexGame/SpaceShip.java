@@ -8,8 +8,8 @@ public class SpaceShip extends SpriteGraphicObject {
 	int speed; // positive is right, negative is left
 	int maxX;
 
-	public SpaceShip(int posY, int posX) {
-		super(posY, posX);
+	public SpaceShip(int posX, int posY) {
+		super(posX, posY);
 		speed = 1;  //move right
 		sprite = new Color[2][3];
 		maxX = 21; //outermost right position
