@@ -4,8 +4,8 @@ import lumenaer.PixelMatrix;
 
 public class SquareGraphicObject extends GraphicObject {
 
-    private int radius;
-    private Color color;
+    protected int radius;
+    protected Color color;
 
     public SquareGraphicObject(int x, int y, int radius, Color color) {
         super(x, y);
@@ -16,7 +16,7 @@ public class SquareGraphicObject extends GraphicObject {
     public void render(PixelMatrix matrix) {
         int drawRadius = radius -1;
         for (int i = -drawRadius; i <= drawRadius; ++i) {
-            for (int j=drawRadius; j<= drawRadius; ++j) {
+            for (int j=-drawRadius; j<= drawRadius; ++j) { //TODO: -drawRadius
                 matrix.setPixel(y+i, x+j, color);
             }
         }

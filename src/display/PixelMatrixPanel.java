@@ -1,11 +1,7 @@
 package display;
 
 import lumenaer.PixelMatrix;
-
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-
+import java.awt.*;
 import javax.swing.JPanel;
 
 public class PixelMatrixPanel extends JPanel {
@@ -13,7 +9,12 @@ public class PixelMatrixPanel extends JPanel {
 	int scale;
 	PixelMatrix matrix;
 
+	private Image offImg;
+	private Graphics2D graphics2D;
+
 	public PixelMatrixPanel(PixelMatrix matrix, int scale) {
+		setDoubleBuffered(true);
+
 		this.matrix = matrix;
 		this.scale = scale;
 	}
@@ -22,13 +23,12 @@ public class PixelMatrixPanel extends JPanel {
 		return new Dimension(matrix.getHeight() * scale, matrix.getWidth() * scale);
 	}
 
-	public void paintComponent(Graphics g) {
-
-		super.paintComponent(g);
+	private void offscreenPaint( Graphics g ) {
 
 		int width = matrix.getWidth();
 		int height = matrix.getHeight();
 
+		//draw Pixel
 		for (int y = 0; y < height; y++) {
 			int ycoord = y * scale;
 
@@ -39,6 +39,31 @@ public class PixelMatrixPanel extends JPanel {
 			}
 		}
 
+		//drawGrid
+		g.setColor(Color.black);
+		for (int i = 0; i < width * scale ; i+= scale) {
+			g.drawLine(i,0,i, height * scale);
+		}
+		for (int i = 0; i < height * scale ; i+= scale) {
+			g.drawLine(0,i, width * scale,i);
+		}
+
 	}
 
+
+	public void paint(Graphics g) {
+
+		if (offImg == null) {
+			offImg = createImage(getSize().width, getSize().height);
+			graphics2D = (Graphics2D) offImg.getGraphics();
+		}
+
+		offscreenPaint(graphics2D);
+		g.drawImage(offImg, 0, 0, this);
+
+	}
+
+	public void update(Graphics g) {
+		paint(g);
+	}
 }
