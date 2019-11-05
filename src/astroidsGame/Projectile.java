@@ -1,4 +1,4 @@
-package alexGame;
+package astroidsGame;
 
 
 import graphics.Color;
@@ -9,7 +9,7 @@ public class Projectile extends SquareGraphicObject {
     private int explodingState;
     private boolean destroyed;
     private boolean explode;
-    Color explodingColor;
+    private Color explodingColor;
 
     public Projectile(int x, int y, int radius, Color color) {
         super(x, y, radius, color);

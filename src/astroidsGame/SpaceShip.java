@@ -1,12 +1,12 @@
-package alexGame;
+package astroidsGame;
 
 import graphics.Color;
 import graphics.SpriteGraphicObject;
 
 public class SpaceShip extends SpriteGraphicObject {
 
-	int speed; // positive is right, negative is left
-	int maxX;
+	private int speed; // positive is right, negative is left
+	private int maxX;
 
 	public SpaceShip(int posY, int posX) {
 		super(posY, posX);

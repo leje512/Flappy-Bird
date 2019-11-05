@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import display.HardwareMatrixCommunicator;
 import display.PixelMatrixPanel;
 
-import alexGame.MiniAstroidsGame;
+import astroidsGame.MiniAstroidsGame;
 
 /**
  * The lumenaer framework class for setting up games and displaying them either on
@@ -150,7 +150,9 @@ public class Lumenaer {
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
-                hwCommunicator.shutDown();
+                if (SENDTOMATRIX) {
+                    hwCommunicator.shutDown();
+                }
             }
         }));
     }

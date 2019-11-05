@@ -1,4 +1,4 @@
-package alexGame;
+package astroidsGame;
 
 import graphics.Color;
 import graphics.RectangleGraphicObject;
