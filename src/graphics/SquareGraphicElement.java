@@ -2,12 +2,12 @@ package graphics;
 
 import lumenaer.PixelMatrix;
 
-public class SquareGraphicObject extends GraphicObject {
+public class SquareGraphicElement extends GraphicElement {
 
     protected int radius;
     protected Color color;
 
-    public SquareGraphicObject(int x, int y, int radius, Color color) {
+    public SquareGraphicElement(int x, int y, int radius, Color color) {
         super(x, y);
         this.radius = radius;
         this.color = color;

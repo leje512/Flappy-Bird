@@ -1,9 +1,12 @@
 package lumenaer;
 
 import graphics.Color;
-import graphics.GraphicObject;
+import graphics.GraphicElement;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Base class for all games. Own games must extend this class.
@@ -15,7 +18,7 @@ public abstract class Game {
     protected PixelMatrix pixelMatrix; // just for convenience
 
     /* Array for storing all individual graphic objects to be drawn */
-    protected ArrayList<GraphicObject> graphicElements;
+    protected List<GraphicElement> graphicElements;
 
     /**
      * Constructor
@@ -25,7 +28,7 @@ public abstract class Game {
     public Game(PixelMatrix matrix) {
         pixelMatrix = matrix;
         pixelMatrix.setBackgroundColor(Color.WHITE);
-        graphicElements = new ArrayList<GraphicObject>();
+        graphicElements = new CopyOnWriteArrayList<>();
     }
 
     /**
@@ -38,9 +41,9 @@ public abstract class Game {
         pixelMatrix.drawBackground();
 
         //displayPixelMatrix everything
-        for (GraphicObject go : graphicElements) {
-            go.update();
-            go.render(pixelMatrix);
+        for (GraphicElement element : graphicElements) {
+            element.update();
+            element.render(pixelMatrix);
         }
 
     }

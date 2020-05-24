@@ -2,11 +2,11 @@ package graphics;
 
 import lumenaer.PixelMatrix;
 
-public abstract class SpriteGraphicObject extends GraphicObject {
+public abstract class SpriteGraphicElement extends GraphicElement {
 
 	protected Color[][] sprite;
 
-	public SpriteGraphicObject(int posX, int posY) {
+	public SpriteGraphicElement(int posX, int posY) {
 		super(posX,posY);
 	}
 

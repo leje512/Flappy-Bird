@@ -1,9 +1,9 @@
 package astroidsGame;
 
 import graphics.Color;
-import graphics.SpriteGraphicObject;
+import graphics.SpriteGraphicElement;
 
-public class SpaceShip extends SpriteGraphicObject {
+public class SpaceShip extends SpriteGraphicElement {
 
 	private int speed; // positive is right, negative is left
 	private int maxX;

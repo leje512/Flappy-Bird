@@ -2,9 +2,9 @@ package astroidsGame;
 
 
 import graphics.Color;
-import graphics.SquareGraphicObject;
+import graphics.SquareGraphicElement;
 
-public class Projectile extends SquareGraphicObject {
+public class Projectile extends SquareGraphicElement {
 
     private int explodingState;
     private boolean destroyed;

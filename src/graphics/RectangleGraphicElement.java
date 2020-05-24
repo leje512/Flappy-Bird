@@ -6,19 +6,19 @@ import lumenaer.PixelMatrix;
  * Rectangle Graphics Object
  *
  */
-public class RectangleGraphicObject extends GraphicObject {
+public class RectangleGraphicElement extends GraphicElement {
 
     int width;
     int height;
     Color color;
 
-    public RectangleGraphicObject(int width, int height, Color color) {
+    public RectangleGraphicElement(int width, int height, Color color) {
         this.width = width;
         this.height = height;
         this.color = color;
     }
 
-    public RectangleGraphicObject(int x, int y, int width, int height, Color color) {
+    public RectangleGraphicElement(int x, int y, int width, int height, Color color) {
         super(x, y);
         this.width = width;
         this.height = height;

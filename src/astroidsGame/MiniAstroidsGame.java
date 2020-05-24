@@ -5,14 +5,17 @@ import lumenaer.Game;
 import lumenaer.PixelMatrix;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public class MiniAstroidsGame extends Game {
 
 	SpaceShip spaceShip;
 	Bar bar;
-	ArrayList<Projectile> projectiles;
-	int counter = 0;
+	List<Projectile> projectiles;
+	int counter;
 
 	public MiniAstroidsGame(PixelMatrix matrix) {
 
@@ -23,7 +26,7 @@ public class MiniAstroidsGame extends Game {
 		graphicElements.add(spaceShip);
 		graphicElements.add(bar);
 
-		projectiles = new ArrayList<Projectile>();
+		projectiles = new CopyOnWriteArrayList<>();
 
 		pixelMatrix.setBackgroundColor(new Color(220,230,47));
 		counter = 0;
@@ -41,17 +44,11 @@ public class MiniAstroidsGame extends Game {
 		}
 
 		//select references that can be destroyed
-		ArrayList<Projectile> toRemove = new ArrayList<Projectile>();
 		for (Projectile p : projectiles) {
 			if (p.isDestroyed() || p.getY() < 0) {
-				toRemove.add(p);
+				graphicElements.remove(p);
+				projectiles.remove(p);
 			}
-		}
-
-		//now really remove them
-		for (Projectile p : toRemove) {
-			graphicElements.remove(p);
-			projectiles.remove(p);
 		}
 
 		super.nextGameStep();
@@ -62,6 +59,9 @@ public class MiniAstroidsGame extends Game {
 
 		// generate a new Projectile
 		Projectile p = new Projectile(bar.getX()+1, bar.getY(),1,Color.BLACK);
+
+		//"doppelte Buchhaltung": projectiles are in graphicElements to be rendered, and in the
+		// projectiles-List to be managed better.
 		graphicElements.add(p);
 		projectiles.add(p);
 
@@ -86,6 +86,4 @@ public class MiniAstroidsGame extends Game {
 		}
 		bar.setX(newXValue);
 	}
-
-
 }

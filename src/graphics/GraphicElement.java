@@ -3,43 +3,43 @@ package graphics;
 import lumenaer.PixelMatrix;
 
 /**
- * The class representing Generic Graphic Objects (i.e. Objects that can be displayed/rendered on a
+ * The class representing Generic Graphic Elements (i.e. Objects that can be displayed/rendered on a
  * PixelMatrix. The PixelMatrix reference gets passed into the render-Method of the class.
  *
  */
-public abstract class GraphicObject {
+public abstract class GraphicElement {
 
     protected int x;
     protected int y;
 
     /**
-     * Default constructor. Places the x/y coordinates of the GraphicsObject at (0|0).
+     * Default constructor. Places the x/y coordinates of the GraphicElement at (0|0).
      */
-    public GraphicObject() {
+    public GraphicElement() {
         this.x = 0;
         this.y = 0;
     }
 
     /**
-     * Constructor that creates a GraphicObjects at position x/y.
+     * Constructor that creates a GraphicElement at position x/y.
      *
-     * @param x the x coordinate of the GraphicObject
-     * @param y the y coordinate of the GraphicObject
+     * @param x the x coordinate of the GraphicElement
+     * @param y the y coordinate of the GraphicElement
      */
-    public GraphicObject(int x, int y) {
+    public GraphicElement(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
     /**
-     * Method in which the internal parameters of the GraphicObject (i.e. position or any other parameters that are
+     * Method in which the internal parameters of the GraphicElement (i.e. position or any other parameters that are
      * introduced by derived classes to define a shape) can be updated. The next rendering step (render) can then be
      * be based on these new internal parameters.
      */
     public void update() {}
 
     /**
-     * Method to transfer the pixels (graphic representation) of GraphicObject
+     * Method to transfer the pixels (graphic representation) of GraphicElement
      * the to PixelMatrix (i.e. the lumenaer Screen)
      *
      * @param matrix the pixel Matrix
