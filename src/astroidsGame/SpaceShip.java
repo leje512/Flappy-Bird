@@ -5,12 +5,11 @@ import graphics.SpriteGraphicElement;
 
 public class SpaceShip extends SpriteGraphicElement {
 
-	private int speed; // positive is right, negative is left
 	private int maxX;
 
 	public SpaceShip(int posX, int posY) {
 		super(posX, posY);
-		speed = 1;  //move right
+		speedX = 1;  //move right
 		sprite = new Color[2][3];
 		maxX = 21; //outermost right position
 
@@ -26,26 +25,29 @@ public class SpaceShip extends SpriteGraphicElement {
 
 	}
 
-	@Override
 	public void update() {
-		int nx = x+speed;
+		move();
+	}
+
+	public void move() {
+		int nx = x + speedX;
 
 		if (nx < 0 ) {
 			nx = 0;
-			speed *= -1;
+			speedX *= -1;
 		} else if (nx > maxX) {
 			nx = maxX;
-			speed *= -1;
+			speedX *= -1;
 		}
 		setX(nx);
 	}
 
 	public int getSpeed() {
-		return speed;
+		return speedX;
 	}
 
 	public void setSpeed(int speed) {
-		this.speed = speed;
+		this.speedX = speed;
 	}
 
 	public boolean intersects(Projectile projectile) {

@@ -60,8 +60,8 @@ public class MiniAstroidsGame extends Game {
 		// generate a new Projectile
 		Projectile p = new Projectile(bar.getX()+1, bar.getY(),1,Color.BLACK);
 
-		//"doppelte Buchhaltung": projectiles are in graphicElements to be rendered, and in the
-		// projectiles-List to be managed better.
+		//"doppelte Buchhaltung": projectiles are in graphicElements to be rendered,
+		// and in the projectiles-List to be managed better.
 		graphicElements.add(p);
 		projectiles.add(p);
 
@@ -84,6 +84,6 @@ public class MiniAstroidsGame extends Game {
 		if (newXValue + bar.getWidth() > 23) {
 			newXValue = 24 - bar.getWidth();
 		}
-		bar.setX(newXValue);
+		bar.move(newXValue,bar.getY()); // y-value stays the same
 	}
 }

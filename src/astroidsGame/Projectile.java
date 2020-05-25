@@ -13,6 +13,7 @@ public class Projectile extends SquareGraphicElement {
 
     public Projectile(int x, int y, int radius, Color color) {
         super(x, y, radius, color);
+        setSpeedY(-1); // moves upwards
         explodingState = 0;
         boolean explode = false;
         boolean destroyed = false;
@@ -54,7 +55,7 @@ public class Projectile extends SquareGraphicElement {
                     destroyed = true;
             }
         } else {
-            y = y - 1;
+            move();
         }
     }
 

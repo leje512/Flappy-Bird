@@ -7,17 +7,18 @@ import lumenaer.PixelMatrix;
  * PixelMatrix. The PixelMatrix reference gets passed into the render-Method of the class.
  *
  */
-public abstract class GraphicElement {
+public abstract class GraphicElement implements Movable {
 
     protected int x;
     protected int y;
 
+    protected int speedX;
+    protected int speedY;
     /**
      * Default constructor. Places the x/y coordinates of the GraphicElement at (0|0).
      */
     public GraphicElement() {
-        this.x = 0;
-        this.y = 0;
+      this(0,0,0,0);
     }
 
     /**
@@ -27,8 +28,22 @@ public abstract class GraphicElement {
      * @param y the y coordinate of the GraphicElement
      */
     public GraphicElement(int x, int y) {
+        this(x,y,0,0);
+    }
+
+    /**
+     * Constructor that creates a GraphicElement at position x/y.
+     *
+     * @param x the x coordinate of the GraphicElement
+     * @param y the y coordinate of the GraphicElement
+     * @param speedX the speed of the GraphicElement in x-direction
+     * @param speedY the speed of the GraphicElement in y-direction
+     */
+    public GraphicElement(int x, int y, int speedX, int speedY) {
         this.x = x;
         this.y = y;
+        this.speedX = speedX;
+        this.speedY = speedY;
     }
 
     /**
@@ -67,4 +82,31 @@ public abstract class GraphicElement {
         this.y = y;
     }
 
+    public int getSpeedX() {
+        return speedX;
+    }
+
+    @Override
+    public void move(int x, int y) {
+        this.x = x; // just set the x/y coordinates to the desired values
+        this.y = y;
+    }
+
+    @Override
+    public void move() {
+        this.x += speedX;
+        this.y += speedY;
+    }
+
+    public void setSpeedX(int speedX) {
+        this.speedX = speedX;
+    }
+
+    public int getSpeedY() {
+        return speedY;
+    }
+
+    public void setSpeedY(int speedY) {
+        this.speedY = speedY;
+    }
 }
