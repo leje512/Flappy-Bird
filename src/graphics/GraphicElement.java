@@ -14,36 +14,51 @@ public abstract class GraphicElement implements Movable {
 
     protected int speedX;
     protected int speedY;
+
+    protected Color color;
+
     /**
-     * Default constructor. Places the x/y coordinates of the GraphicElement at (0|0).
+     * Default constructor. Places the x/y coordinates of the GraphicElement at (0|0). The default color is black.
      */
     public GraphicElement() {
-      this(0,0,0,0);
+      this(0,0);
     }
 
     /**
-     * Constructor that creates a GraphicElement at position x/y.
+     * Constructor that creates a GraphicElement at position x/y. The default color is black.
      *
      * @param x the x coordinate of the GraphicElement
      * @param y the y coordinate of the GraphicElement
      */
     public GraphicElement(int x, int y) {
-        this(x,y,0,0);
+        this(x,y,0,0,Color.BLACK);
     }
 
     /**
-     * Constructor that creates a GraphicElement at position x/y.
+     * Constructor that creates a GraphicElement at position x/y and a given color.
+     *
+     * @param x the x coordinate of the GraphicElement
+     * @param y the y coordinate of the GraphicElement
+     */
+    public GraphicElement(int x, int y, Color color) {
+        this(x,y,0,0,color);
+    }
+
+    /**
+     * Constructor that creates a GraphicElement at position x/y and with a predefined speed.
      *
      * @param x the x coordinate of the GraphicElement
      * @param y the y coordinate of the GraphicElement
      * @param speedX the speed of the GraphicElement in x-direction
      * @param speedY the speed of the GraphicElement in y-direction
+     * @param color the color of the GraphicElement (eventually the background color)
      */
-    public GraphicElement(int x, int y, int speedX, int speedY) {
+    public GraphicElement(int x, int y, int speedX, int speedY, Color color) {
         this.x = x;
         this.y = y;
         this.speedX = speedX;
         this.speedY = speedY;
+        this.color = color;
     }
 
     /**
@@ -66,6 +81,20 @@ public abstract class GraphicElement implements Movable {
         this.y = y;
     }
 
+    @Override
+    public void move(int x, int y) {
+        this.x = x; // just set the x/y coordinates to the desired values
+        this.y = y;
+    }
+
+    @Override
+    public void move() {
+        this.x += speedX;
+        this.y += speedY;
+    }
+
+    // Get- and Set- Methods --------------------------------
+
     public int getX() {
         return x;
     }
@@ -86,16 +115,12 @@ public abstract class GraphicElement implements Movable {
         return speedX;
     }
 
-    @Override
-    public void move(int x, int y) {
-        this.x = x; // just set the x/y coordinates to the desired values
-        this.y = y;
+    public Color getColor() {
+        return color;
     }
 
-    @Override
-    public void move() {
-        this.x += speedX;
-        this.y += speedY;
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     public void setSpeedX(int speedX) {

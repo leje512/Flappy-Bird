@@ -5,13 +5,10 @@ import graphics.RectangleGraphicElement;
 
 public class Bar extends RectangleGraphicElement {
 
-    public Bar(int width, int height, Color color, int maxPos) {
-        this(0,0, width, height, color);
-    }
-
     public Bar(int x, int y, int width, int height, Color color) {
         super(x, y, width, height, color);
     }
 
+    // could probably use some more logic to make it somehow different from an ordenary bar...
 
 }

@@ -5,7 +5,6 @@ import lumenaer.PixelMatrix;
 public class SquareGraphicElement extends GraphicElement {
 
     protected int radius;
-    protected Color color;
 
     public SquareGraphicElement(int x, int y, int radius, Color color) {
         super(x, y);
@@ -31,11 +30,4 @@ public class SquareGraphicElement extends GraphicElement {
         this.radius = radius;
     }
 
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
 }

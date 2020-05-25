@@ -10,12 +10,9 @@ public class RectangleGraphicElement extends GraphicElement {
 
     int width;
     int height;
-    Color color;
 
     public RectangleGraphicElement(int width, int height, Color color) {
-        this.width = width;
-        this.height = height;
-        this.color = color;
+       this(0,0,width,height,color);
     }
 
     public RectangleGraphicElement(int x, int y, int width, int height, Color color) {
@@ -48,14 +45,6 @@ public class RectangleGraphicElement extends GraphicElement {
 
     public void setHeight(int height) {
         this.height = height;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 
 }

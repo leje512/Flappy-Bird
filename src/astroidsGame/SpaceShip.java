@@ -10,7 +10,7 @@ public class SpaceShip extends SpriteGraphicElement {
 	public SpaceShip(int posX, int posY) {
 		super(posX, posY);
 		speedX = 1;  //move right
-		sprite = new Color[2][3];
+		sprite = new Color[2][3]; // sprite matrix must be created here
 		maxX = 21; //outermost right position
 
 		Color bodyColor = new Color (30,30,100);

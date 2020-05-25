@@ -2,6 +2,11 @@ package graphics;
 
 import lumenaer.PixelMatrix;
 
+/**
+ * Abstract base class for all sprite based GraphicElements. A sprite pixel matrix must be
+ * created (and probably initialized) in the constructor.
+ */
+
 public abstract class SpriteGraphicElement extends GraphicElement {
 
 	protected Color[][] sprite;
