@@ -8,8 +8,8 @@ import lumenaer.PixelMatrix;
  */
 public class RectangleGraphicElement extends GraphicElement {
 
-    int width;
-    int height;
+    protected int width;
+    protected int height;
 
     public RectangleGraphicElement(int width, int height, Color color) {
        this(0,0,width,height,color);
