@@ -16,6 +16,7 @@ public class MiniAstroidsGame extends Game {
 	Bar bar;
 	List<Projectile> projectiles;
 	int counter;
+	int counter2 = 0;
 
 	public MiniAstroidsGame(PixelMatrix matrix) {
 
@@ -30,6 +31,7 @@ public class MiniAstroidsGame extends Game {
 
 		pixelMatrix.setBackgroundColor(new Color(220,230,47));
 		counter = 0;
+
 	}
 
 	@Override
@@ -50,7 +52,14 @@ public class MiniAstroidsGame extends Game {
 				projectiles.remove(p);
 			}
 		}
-
+		//change color after 10 steps
+		counter2++;
+		if (counter2 >= 10) {
+			counter2 = 0;
+			Color co = new Color((int)(Math.random()*255) ,(int)(Math.random()*255) ,(int)(Math.random()*255) );
+			bar.setColor(co);
+		}
+		System.out.println(counter2);
 		super.nextGameStep();
 	}
 
