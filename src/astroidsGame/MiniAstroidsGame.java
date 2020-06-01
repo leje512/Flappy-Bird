@@ -21,7 +21,7 @@ public class MiniAstroidsGame extends Game {
 
 		super(matrix);
 		spaceShip = new SpaceShip(0, 3);
-		bar = new Bar(15,20,3,1, Color.BLUE);
+		bar = new Bar(15,20,3,1, Color.GREEN);
 
 		graphicElements.add(spaceShip);
 		graphicElements.add(bar);
