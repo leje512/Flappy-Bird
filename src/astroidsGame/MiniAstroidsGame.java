@@ -15,16 +15,20 @@ public class MiniAstroidsGame extends Game {
 	SpaceShip spaceShip;
 	Bar bar;
 	List<Projectile> projectiles;
+	Wall wall;
 	int counter;
+	boolean wallIsThere = true;
 
 	public MiniAstroidsGame(PixelMatrix matrix) {
 
 		super(matrix);
 		spaceShip = new SpaceShip(0, 3);
 		bar = new Bar(15,20,3,1, Color.GREEN);
+		wall = new Wall(0, 8, matrix.getWidth(), 1, Color.BLACK);
 
 		graphicElements.add(spaceShip);
 		graphicElements.add(bar);
+		graphicElements.add(wall);
 
 		projectiles = new CopyOnWriteArrayList<>();
 
@@ -48,6 +52,18 @@ public class MiniAstroidsGame extends Game {
 			if (p.isDestroyed() || p.getY() < 0) {
 				graphicElements.remove(p);
 				projectiles.remove(p);
+			}
+		}
+
+		if (wallIsThere) {
+			//when wall is hit it disappears
+			for (Projectile p : projectiles) {
+				if (wall.intersects(p)) {
+					p.explode();
+					graphicElements.remove(wall);
+					//wall wird nur unsichtbar, ist aber immer noch da
+					wallIsThere = false;
+				}
 			}
 		}
 
