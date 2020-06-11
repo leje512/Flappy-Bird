@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import display.HardwareMatrixCommunicator;
 import display.PixelMatrixPanel;
 
-import astroidsGame.MiniAstroidsGame;
+//import astroidsGame.MiniAstroidsGame;
 import flappyBird.FlappyBirdGame;
 
 /**
@@ -124,6 +124,7 @@ public class Lumenaer {
         frame.toFront();
 
         // later on: logic to change the current game
+        //currentGame = new MiniAstroidsGame(pixelMatrix);
         currentGame = new FlappyBirdGame(pixelMatrix);
 
         prepareExitHandler();
