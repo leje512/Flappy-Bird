@@ -19,10 +19,11 @@ public class Pillar extends RectangleGraphicElement {
     }
 
     public void move() {
-    x--;
-    if (x < -5) {
-        x = 30;
-    }
+        x--;
+        if (x < -5) {
+            x = 75;
+        }
+
     }
 
 }

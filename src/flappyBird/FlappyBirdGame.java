@@ -8,30 +8,31 @@ import lumenaer.PixelMatrix;
 public class FlappyBirdGame extends Game {
 
     Bird bird;
-    //new pillarlist[5]
+    Pillar[] pillarsDown;
+    Pillar[] pillarsUp;
     SquareGraphicElement test;
-    Pillar pillar;
-    Pillar pillar2;
-    Pillar pillar3;
-    Pillar pillar4;
 
     public FlappyBirdGame (PixelMatrix matrix) {
         //übernommen von Asteroidsgame
         super(matrix);
-
+        pillarsDown = new Pillar[10];
+        pillarsUp = new Pillar[10];
         bird = new Bird(2, 10, 2, Color.RED);
 
-        pillar = new Pillar(5, pixelMatrix.getHeight()-8, 2, 8, Color.GREEN);
-        pillar2 = new Pillar(5, 0, 2, 8, Color.GREEN);
-        pillar3 = new Pillar(10, pixelMatrix.getHeight()-10, 2, 10, Color.GREEN);
-        pillar4 = new Pillar(10, 0, 2, 6, Color.GREEN);
+        for (int i = 0; i < pillarsDown.length; i++) {
+            int random = (int) (Math.random() *8);
+            System.out.println(random);
+            pillarsDown[i] = new Pillar(30 + i*8, pixelMatrix.getHeight() -8 + random, 2, 8, Color.GREEN);
+            pillarsUp[i] = new Pillar(30 + i*8, 0, 2, 8+random, Color.GREEN);
+        }
+
 
         graphicElements.add(bird);
 
-        graphicElements.add(pillar);
-        graphicElements.add(pillar2);
-        graphicElements.add(pillar3);
-        graphicElements.add(pillar4);
+        for (int i = 0; i < pillarsDown.length; i++) {
+            graphicElements.add(pillarsDown[i]);
+            graphicElements.add(pillarsUp[i]);
+        }
 
         pixelMatrix.setBackgroundColor(new Color(69, 99, 209));
 
