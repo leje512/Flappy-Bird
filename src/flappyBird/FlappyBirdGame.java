@@ -1,7 +1,6 @@
 package flappyBird;
 
 import graphics.Color;
-import graphics.SquareGraphicElement;
 import lumenaer.Game;
 import lumenaer.PixelMatrix;
 
@@ -10,14 +9,14 @@ public class FlappyBirdGame extends Game {
     Bird bird;
     Pillar[] pillarsDown;
     Pillar[] pillarsUp;
-    SquareGraphicElement test;
+    boolean gameOver = false;
 
     public FlappyBirdGame (PixelMatrix matrix) {
-        //übernommen von Asteroidsgame
         super(matrix);
         pillarsDown = new Pillar[10];
         pillarsUp = new Pillar[10];
-        bird = new Bird(2, 10, 2, Color.RED);
+        bird = new Bird(2, 10, 2, 2, Color.RED);
+        System.out.println("bird y " + bird.getY());
 
         for (int i = 0; i < pillarsDown.length; i++) {
             int random = (int) (Math.random() *8);
@@ -43,10 +42,32 @@ public class FlappyBirdGame extends Game {
         //hier passiert alles:)
         bird.setY(bird.getY() + 1);
 
-        //check for collide with pillars (how to in MiniAsteroidsGame)
+        //TODO: die y pos des birds passt oft gar nicht mit dem was gerendert wird, deshalb ist die Kollision falsch
+
+        //check for collide with pillars down
+        for (Pillar down : pillarsDown) {
+            if (bird.intersects(down)) {
+                bird.setColor(Color.BLACK);
+                System.out.println("hitDown");
+                System.out.println("bird y " + bird.getY());
+                gameOver = true;
+            }
+        }
+
+        //check for collide with pillars up
+        for (Pillar up : pillarsUp) {
+            if (bird.intersects(up)) {
+                bird.setColor(Color.BLACK);
+                System.out.println("hitUp");
+                System.out.println("bird y " + bird.getY());
+                gameOver = true;
+            }
+        }
 
         //next step gets started
-        super.nextGameStep();
+        if (!gameOver) {
+            super.nextGameStep();
+        }
     }
 
     //hier fliegt der vogel
