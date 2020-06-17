@@ -3,6 +3,7 @@ package flappyBird;
 import graphics.Color;
 import graphics.RectangleGraphicElement;
 
+
 /**
  * Class Pillar
  */
@@ -21,9 +22,7 @@ public class Pillar extends RectangleGraphicElement {
     public void move() {
         x--;
         if (x < -5) {
-            x = 75;
+            x = 145;
         }
-
     }
-
 }

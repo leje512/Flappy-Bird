@@ -13,16 +13,16 @@ public class FlappyBirdGame extends Game {
 
     public FlappyBirdGame (PixelMatrix matrix) {
         super(matrix);
-        pillarsDown = new Pillar[10];
-        pillarsUp = new Pillar[10];
+        pillarsDown = new Pillar[15];
+        pillarsUp = new Pillar[15];
         bird = new Bird(2, 10, 2, 2, Color.RED);
         System.out.println("bird y " + bird.getY());
 
         for (int i = 0; i < pillarsDown.length; i++) {
-            int random = (int) (Math.random() *8);
+            int random = (int) (Math.random() *15);
             System.out.println(random);
-            pillarsDown[i] = new Pillar(30 + i*8, pixelMatrix.getHeight() -8 + random, 2, 8, Color.GREEN);
-            pillarsUp[i] = new Pillar(30 + i*8, 0, 2, 8+random, Color.GREEN);
+            pillarsDown[i] = new Pillar(30 + i*10, 9 + random, 3, 15, Color.GREEN);
+            pillarsUp[i] = new Pillar(30 + i*10, 0, 3, 1+random, Color.GREEN);
         }
 
 
@@ -39,41 +39,47 @@ public class FlappyBirdGame extends Game {
 
     @Override
     public void nextGameStep() {
+
         //hier passiert alles:)
         bird.setY(bird.getY() + 1);
 
-        //TODO: die y pos des birds passt oft gar nicht mit dem was gerendert wird, deshalb ist die Kollision falsch
-
-        //check for collide with pillars down
-        for (Pillar down : pillarsDown) {
-            if (bird.intersects(down)) {
-                bird.setColor(Color.BLACK);
-                System.out.println("hitDown");
-                System.out.println("bird y " + bird.getY());
-                gameOver = true;
-            }
-        }
-
-        //check for collide with pillars up
-        for (Pillar up : pillarsUp) {
-            if (bird.intersects(up)) {
-                bird.setColor(Color.BLACK);
-                System.out.println("hitUp");
-                System.out.println("bird y " + bird.getY());
-                gameOver = true;
-            }
-        }
-
-        //next step gets started
         if (!gameOver) {
+
+            //check for collide with pillars down
+            for (Pillar down : pillarsDown) {
+                if (bird.intersects(down)) {
+                    bird.setColor(Color.BLACK);
+                    System.out.println("hitDown");
+                    System.out.println("bird y " + bird.getY());
+                    gameOver = true;
+                }
+            }
+
+            //check for collide with pillars up
+            for (Pillar up : pillarsUp) {
+                if (bird.intersects(up)) {
+                    bird.setColor(Color.BLACK);
+                    System.out.println("hitUp");
+                    System.out.println("bird y " + bird.getY());
+                    gameOver = true;
+                }
+            }
+
+            //next step gets started
+            //if (!gameOver) {
+            //super.nextGameStep();
+            //}
             super.nextGameStep();
         }
+
     }
 
     //hier fliegt der vogel
     @Override
     public void buzzered() {
-        bird.setY(bird.getY() - 5);
+        if (!gameOver) {
+            bird.setY(bird.getY() - 5);
+        }
     }
 
 
