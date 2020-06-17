@@ -14,7 +14,13 @@ public class Pillar extends RectangleGraphicElement {
         super(x, y, width, height, color);
     }
 
-
+    public void setPillar(int x, int y, int width, int height, Color color) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.color = color;
+    }
     public void update() {
         move();
     }

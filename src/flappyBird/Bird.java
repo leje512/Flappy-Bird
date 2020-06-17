@@ -3,7 +3,6 @@ package flappyBird;
 import flappyBird.Pillar;
 import graphics.Color;
 import graphics.RectangleGraphicElement;
-import graphics.SquareGraphicElement;
 
 public class Bird extends RectangleGraphicElement {
 

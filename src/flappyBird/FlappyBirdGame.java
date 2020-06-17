@@ -1,7 +1,9 @@
 package flappyBird;
 
 import graphics.Color;
+import graphics.RectangleGraphicElement;
 import lumenaer.Game;
+import lumenaer.Lumenaer;
 import lumenaer.PixelMatrix;
 
 public class FlappyBirdGame extends Game {
@@ -10,6 +12,7 @@ public class FlappyBirdGame extends Game {
     Pillar[] pillarsDown;
     Pillar[] pillarsUp;
     boolean gameOver = false;
+    RectangleGraphicElement rect;
 
     public FlappyBirdGame (PixelMatrix matrix) {
         super(matrix);
@@ -34,6 +37,7 @@ public class FlappyBirdGame extends Game {
         }
 
         pixelMatrix.setBackgroundColor(new Color(69, 99, 209));
+        rect = new RectangleGraphicElement(0, 0, 24, 24, Color.BLACK);
 
     }
 
@@ -42,6 +46,7 @@ public class FlappyBirdGame extends Game {
 
         //hier passiert alles:)
         bird.setY(bird.getY() + 1);
+        graphicElements.remove(rect);
 
         if (!gameOver) {
 
@@ -65,13 +70,19 @@ public class FlappyBirdGame extends Game {
                 }
             }
 
+            if (bird.getY() < 0 || bird.getY() > pixelMatrix.getHeight()) {
+                gameOver = true;
+            }
+
+            if (gameOver) {
+                graphicElements.add(rect);
+            }
             //next step gets started
             //if (!gameOver) {
             //super.nextGameStep();
             //}
             super.nextGameStep();
         }
-
     }
 
     //hier fliegt der vogel
@@ -79,6 +90,19 @@ public class FlappyBirdGame extends Game {
     public void buzzered() {
         if (!gameOver) {
             bird.setY(bird.getY() - 5);
+        } else {
+            //position des birds und des vogels einfach wieder auf normal setzen
+            gameOver = false;
+            bird.setX(2);
+            bird.setY(10);
+            bird.setColor(Color.RED);
+
+            for (int i = 0; i < pillarsDown.length; i++) {
+                int random = (int) (Math.random() *15);
+                System.out.println(random);
+                pillarsDown[i].setPillar(30 + i*10, 9 + random, 3, 15, Color.GREEN);
+                pillarsUp[i].setPillar(30 + i*10, 0, 3, 1+random, Color.GREEN);
+            }
         }
     }
 
