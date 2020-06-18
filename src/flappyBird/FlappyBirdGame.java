@@ -2,6 +2,7 @@ package flappyBird;
 
 import graphics.Color;
 import graphics.RectangleGraphicElement;
+import graphics.SpriteGraphicElement;
 import lumenaer.Game;
 import lumenaer.Lumenaer;
 import lumenaer.PixelMatrix;
@@ -12,7 +13,9 @@ public class FlappyBirdGame extends Game {
     Pillar[] pillarsDown;
     Pillar[] pillarsUp;
     boolean gameOver = false;
-    RectangleGraphicElement rect;
+    Skull skull;
+    //overlapping the elements, if you change the background, the pillars are still there
+    RectangleGraphicElement skullRect;
 
     public FlappyBirdGame (PixelMatrix matrix) {
         super(matrix);
@@ -37,8 +40,10 @@ public class FlappyBirdGame extends Game {
         }
 
         pixelMatrix.setBackgroundColor(new Color(69, 99, 209));
-        rect = new RectangleGraphicElement(0, 0, 24, 24, Color.BLACK);
-
+        skull = new Skull(4, 4);
+        skullRect = new RectangleGraphicElement(0, 0, pixelMatrix.getWidth(), pixelMatrix.getHeight(), Color.BLACK);
+        graphicElements.add(skullRect);
+        graphicElements.add(skull);
     }
 
     @Override
@@ -46,7 +51,8 @@ public class FlappyBirdGame extends Game {
 
         //hier passiert alles:)
         bird.setY(bird.getY() + 1);
-        graphicElements.remove(rect);
+        graphicElements.remove(skullRect);
+        graphicElements.remove(skull);
 
         if (!gameOver) {
 
@@ -75,7 +81,8 @@ public class FlappyBirdGame extends Game {
             }
 
             if (gameOver) {
-                graphicElements.add(rect);
+                graphicElements.add(skullRect);
+                graphicElements.add(skull);
             }
             //next step gets started
             //if (!gameOver) {
