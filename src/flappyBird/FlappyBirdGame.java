@@ -2,6 +2,7 @@ package flappyBird;
 
 import graphics.Color;
 import graphics.RectangleGraphicElement;
+import graphics.SpriteGraphicElement;
 import lumenaer.Game;
 import lumenaer.Lumenaer;
 import lumenaer.PixelMatrix;
@@ -15,6 +16,9 @@ public class FlappyBirdGame extends Game {
     boolean gameOver2 = false;
     RectangleGraphicElement rect;
     RectangleGraphicElement[] text;
+    Skull skull;
+    //overlapping the elements, if you change the background, the pillars are still there
+    RectangleGraphicElement skullRect;
 
     public FlappyBirdGame (PixelMatrix matrix) {
         super(matrix);
@@ -73,8 +77,6 @@ public class FlappyBirdGame extends Game {
         bird = new Bird(2, 10, 2, 2, Color.RED);
         System.out.println("bird y " + bird.getY());
 
-
-
         for (int i = 0; i < pillarsDown.length; i++) {
             int random = (int) (Math.random() *15);
             System.out.println(random);
@@ -90,8 +92,11 @@ public class FlappyBirdGame extends Game {
             graphicElements.add(pillarsUp[i]);
         }
 
-
         pixelMatrix.setBackgroundColor(new Color(69, 99, 209));
+        skull = new Skull(4, 4);
+        skullRect = new RectangleGraphicElement(0, 0, pixelMatrix.getWidth(), pixelMatrix.getHeight(), Color.BLACK);
+        graphicElements.add(skullRect);
+        graphicElements.add(skull);
         rect = new RectangleGraphicElement(0, 0, 12, 12, Color.BLACK);
 
     }
@@ -100,6 +105,8 @@ public class FlappyBirdGame extends Game {
     public void nextGameStep() {
 
         //hier passiert alles:)
+        graphicElements.remove(skullRect);
+        graphicElements.remove(skull);
 
         if (!gameOver) {
             bird.setY(bird.getY() + 1);
@@ -132,6 +139,8 @@ public class FlappyBirdGame extends Game {
             }
 
             if (gameOver) {
+                graphicElements.add(skullRect);
+                graphicElements.add(skull);
                 //graphicElements.add(rect);
                 for(int i = 0; i < text.length; i++) {
                     graphicElements.add(text[i]);
