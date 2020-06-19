@@ -18,7 +18,7 @@ public class FlappyBirdGame extends Game {
     RectangleGraphicElement[] text;
     Skull skull;
     //overlapping the elements, if you change the background, the pillars are still there
-    //RectangleGraphicElement skullRect;
+
 
     public FlappyBirdGame (PixelMatrix matrix) {
         super(matrix);
@@ -95,10 +95,6 @@ public class FlappyBirdGame extends Game {
 
         pixelMatrix.setBackgroundColor(new Color(69, 99, 209));
         skull = new Skull(4, 4);
-        //skullRect = new RectangleGraphicElement(0, 0, pixelMatrix.getWidth(), pixelMatrix.getHeight(), Color.BLACK);
-        //graphicElements.add(skullRect);
-        //graphicElements.add(skull);
-        //rect = new RectangleGraphicElement(0, 0, 12, 12, Color.BLACK);
 
     }
 
@@ -107,19 +103,17 @@ public class FlappyBirdGame extends Game {
 
         //hier passiert alles:)
 
-        //graphicElements.remove(skullRect);
-        //graphicElements.remove(skull);
         if (!collide) {
+            //move bird down every game step
             bird.setY(bird.getY() + 1);
 
-            //graphicElements.remove(rect);
+            //remove game over text
             for(int i = 0; i < text.length; i++) {
                 graphicElements.remove(text[i]);
             }
             //check for collide with pillars down
             for (Pillar down : pillarsDown) {
                 if (bird.intersects(down)) {
-                    //bird.setColor(Color.BLACK);
                     System.out.println("hitDown");
                     System.out.println("bird y " + bird.getY());
                     collide = true;
@@ -134,18 +128,15 @@ public class FlappyBirdGame extends Game {
                     collide = true;
                 }
             }
-
+            //check for collide with borders of matrix
             if (bird.getY() < 0 || bird.getY()  > pixelMatrix.getHeight()) {
                 collide = true;
             }
-
+            // trigger game over image and change bird color when pillar is hit
             if (collide) {
-                //graphicElements.add(skullRect);
+
                 graphicElements.add(skull);
-                //graphicElements.add(rect);
-                /*for(int i = 0; i < text.length; i++) {
-                    graphicElements.add(text[i]);
-                }*/
+
                 bird.setColor(new Color(50,50,50));
             }
 
@@ -153,10 +144,11 @@ public class FlappyBirdGame extends Game {
 
         if (collide) {
             bird.setY(bird.getY() + 3);
-
+            //remove game over image
             if (bird.getY() > pixelMatrix.getHeight()) {
                 graphicElements.remove(skull);
             }
+            // trigger game over text
             if (bird.getY() > pixelMatrix.getHeight() && !drawnOneTime) {
                 for(int i = 0; i < text.length; i++) {
                     graphicElements.add(text[i]);
@@ -168,13 +160,18 @@ public class FlappyBirdGame extends Game {
                 gameOver = true;
             }
         }
-
+        //game stops if game over
         if (!gameOver) {
             super.nextGameStep();
         }
     }
 
     //hier fliegt der vogel
+
+    /**
+     * moves the bird up for every click
+     * restarts the game if game over
+     */
     @Override
     public void buzzered() {
         if (!collide) {
@@ -187,7 +184,7 @@ public class FlappyBirdGame extends Game {
             bird.setX(2);
             bird.setY(10);
             bird.setColor(Color.RED);
-
+            //resets the pillars every new game (random gap)
             for (int i = 0; i < pillarsDown.length; i++) {
                 int random = (int) (Math.random() *15);
                 System.out.println(random);
@@ -198,12 +195,13 @@ public class FlappyBirdGame extends Game {
     }
 
 
-    //brauchen wir warsch auch nicht
     @Override
     public void buzzerReleased() {}
 
-    //haben wir nicht, müssen wir aber überschreiben
-    //vielleicht kann man was lustiges machen wie farbe ändern, ist aber nicht wichtig
+    /**
+     * Changes the color of the bird
+     * @param rotationValue Value of the mouse wheel
+     */
     @Override
     public void wheelRotation(int rotationValue) {
         if (!collide) {

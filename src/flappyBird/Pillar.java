@@ -5,7 +5,7 @@ import graphics.RectangleGraphicElement;
 
 
 /**
- * Class Pillar
+ * creates obstacles for the bird
  */
 
 public class Pillar extends RectangleGraphicElement {
@@ -14,6 +14,14 @@ public class Pillar extends RectangleGraphicElement {
         super(x, y, width, height, color);
     }
 
+    /**
+     *
+     * @param x x-position of pillar
+     * @param y y-position of pillar
+     * @param width width of pillar
+     * @param height height of pillar
+     * @param color color of pillar
+     */
     public void setPillar(int x, int y, int width, int height, Color color) {
         this.x = x;
         this.y = y;
@@ -25,6 +33,10 @@ public class Pillar extends RectangleGraphicElement {
         move();
     }
 
+    /**
+     * moves the Pillars from right to left
+     * resets the Pillar if X-Position < 5
+     */
     public void move() {
         x--;
         if (x < -5) {
