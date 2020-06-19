@@ -12,7 +12,7 @@ public class Skull extends SpriteGraphicElement {
         //background
         for (int i = 0; i < sprite.length; i++) {
             for (int j = 0; j < sprite[i].length; j++) {
-                sprite[i][j] = Color.BLACK;
+                sprite[i][j] = Color.TRANSPARENT;
             }
         }
         //upper head
@@ -23,19 +23,19 @@ public class Skull extends SpriteGraphicElement {
         }
 
         //headform
-        sprite[0][0] = Color.BLACK;
-        sprite[0][1] = Color.BLACK;
-        sprite[0][2] = Color.BLACK;
-        sprite[1][0] = Color.BLACK;
-        sprite[1][0] = Color.BLACK;
-        sprite[2][0] = Color.BLACK;
+        sprite[0][0] = Color.TRANSPARENT;
+        sprite[0][1] = Color.TRANSPARENT;
+        sprite[0][2] = Color.TRANSPARENT;
+        sprite[1][0] = Color.TRANSPARENT;
+        sprite[1][0] = Color.TRANSPARENT;
+        sprite[2][0] = Color.TRANSPARENT;
 
-        sprite[0][13] = Color.BLACK;
-        sprite[0][14] = Color.BLACK;
-        sprite[0][15] = Color.BLACK;
-        sprite[1][14] = Color.BLACK;
-        sprite[1][15] = Color.BLACK;
-        sprite[2][15] = Color.BLACK;
+        sprite[0][13] = Color.TRANSPARENT;
+        sprite[0][14] = Color.TRANSPARENT;
+        sprite[0][15] = Color.TRANSPARENT;
+        sprite[1][14] = Color.TRANSPARENT;
+        sprite[1][15] = Color.TRANSPARENT;
+        sprite[2][15] = Color.TRANSPARENT;
 
         //Eyes
         sprite[4][4] = Color.BLACK;
@@ -99,6 +99,14 @@ public class Skull extends SpriteGraphicElement {
         sprite[12][11] = Color.WHITE;
 
         //13 is gap
+        sprite[13][4] = Color.BLACK;
+        sprite[13][6] = Color.BLACK;
+        sprite[13][7] = Color.BLACK;
+        sprite[13][8] = Color.BLACK;
+        sprite[13][9] = Color.BLACK;
+        sprite[13][10] = Color.BLACK;
+        sprite[13][11] = Color.BLACK;
+        sprite[13][5] = Color.BLACK;
         //mouth
         sprite[14][4] = Color.WHITE;
         sprite[14][5] = Color.WHITE;

@@ -2,75 +2,76 @@ package flappyBird;
 
 import graphics.Color;
 import graphics.RectangleGraphicElement;
-import graphics.SpriteGraphicElement;
 import lumenaer.Game;
-import lumenaer.Lumenaer;
 import lumenaer.PixelMatrix;
 
 public class FlappyBirdGame extends Game {
 
+    int colorCounter = 0;
     Bird bird;
     Pillar[] pillarsDown;
     Pillar[] pillarsUp;
+    boolean collide = false;
     boolean gameOver = false;
-    boolean gameOver2 = false;
+    boolean drawnOneTime = false;
     RectangleGraphicElement rect;
     RectangleGraphicElement[] text;
     Skull skull;
     //overlapping the elements, if you change the background, the pillars are still there
-    RectangleGraphicElement skullRect;
+    //RectangleGraphicElement skullRect;
 
     public FlappyBirdGame (PixelMatrix matrix) {
         super(matrix);
 
         text = new RectangleGraphicElement[37];
         //Game Over text
+        {
         //G
-        text[0] = new RectangleGraphicElement(1,6,4,1, Color.BLACK);
-        text[1] = new RectangleGraphicElement(1,6,1,5, Color.BLACK);
-        text[2] = new RectangleGraphicElement(1,10,4,1, Color.BLACK);
-        text[3] = new RectangleGraphicElement(4,8,1,3, Color.BLACK);
-        text[4] = new RectangleGraphicElement(3,8,2,1, Color.BLACK);
-        //A
-        text[5] = new RectangleGraphicElement(7,6,1,5, Color.BLACK);
-        text[6] = new RectangleGraphicElement(7,6,4,1, Color.BLACK);
-        text[7] = new RectangleGraphicElement(10,6,1,5, Color.BLACK);
-        text[8] = new RectangleGraphicElement(7,9,4,1, Color.BLACK);
-        //M
-        text[9] = new RectangleGraphicElement(13,6,1,5, Color.BLACK);
-        text[10] = new RectangleGraphicElement(17,6,1,5, Color.BLACK);
-        text[11] = new RectangleGraphicElement(14,7,1,1, Color.BLACK);
-        text[12] = new RectangleGraphicElement(15,8,1,1, Color.BLACK);
-        text[13] = new RectangleGraphicElement(16,7,1,1, Color.BLACK);
-        //E
-        text[14] = new RectangleGraphicElement(19,6,1,5, Color.BLACK);
-        text[15] = new RectangleGraphicElement(19,6,4,1, Color.BLACK);
-        text[16] = new RectangleGraphicElement(19,8,4,1, Color.BLACK);
-        text[17] = new RectangleGraphicElement(19,10,4,1, Color.BLACK);
-        //O
-        text[18] = new RectangleGraphicElement(1,13,1,5, Color.BLACK);
-        text[19] = new RectangleGraphicElement(1,13,4,1, Color.BLACK);
-        text[20] = new RectangleGraphicElement(1,17,4,1, Color.BLACK);
-        text[21] = new RectangleGraphicElement(4,13,1,5, Color.BLACK);
-        //V
-        text[22] = new RectangleGraphicElement(7,13,1,2, Color.BLACK);
-        text[23] = new RectangleGraphicElement(8,15,1,2, Color.BLACK);
-        text[24] = new RectangleGraphicElement(9,17,1,1, Color.BLACK);
-        text[25] = new RectangleGraphicElement(10,15,1,2, Color.BLACK);
-        text[26] = new RectangleGraphicElement(11,13,1,2, Color.BLACK);
-        //E
-        text[27] = new RectangleGraphicElement(13,13,4,1, Color.BLACK);
-        text[28] = new RectangleGraphicElement(13,13,1,5, Color.BLACK);
-        text[29] = new RectangleGraphicElement(13,15,4,1, Color.BLACK);
-        text[30] = new RectangleGraphicElement(13,17,4,1, Color.BLACK);
-        //R
-        text[31] = new RectangleGraphicElement(19,13,4,1, Color.BLACK);
-        text[32] = new RectangleGraphicElement(19,13,1,5, Color.BLACK);
-        text[33] = new RectangleGraphicElement(22,13,1,3, Color.BLACK);
-        text[34] = new RectangleGraphicElement(19,15,4,1, Color.BLACK);
-        text[35] = new RectangleGraphicElement(21,16,1,1, Color.BLACK);
-        text[36] = new RectangleGraphicElement(22,17,1,1, Color.BLACK);
-
+            text[0] = new RectangleGraphicElement(1, 6, 4, 1, Color.BLACK);
+            text[1] = new RectangleGraphicElement(1, 6, 1, 5, Color.BLACK);
+            text[2] = new RectangleGraphicElement(1, 10, 4, 1, Color.BLACK);
+            text[3] = new RectangleGraphicElement(4, 8, 1, 3, Color.BLACK);
+            text[4] = new RectangleGraphicElement(3, 8, 2, 1, Color.BLACK);
+            //A
+            text[5] = new RectangleGraphicElement(7, 6, 1, 5, Color.BLACK);
+            text[6] = new RectangleGraphicElement(7, 6, 4, 1, Color.BLACK);
+            text[7] = new RectangleGraphicElement(10, 6, 1, 5, Color.BLACK);
+            text[8] = new RectangleGraphicElement(7, 9, 4, 1, Color.BLACK);
+            //M
+            text[9] = new RectangleGraphicElement(13, 6, 1, 5, Color.BLACK);
+            text[10] = new RectangleGraphicElement(17, 6, 1, 5, Color.BLACK);
+            text[11] = new RectangleGraphicElement(14, 7, 1, 1, Color.BLACK);
+            text[12] = new RectangleGraphicElement(15, 8, 1, 1, Color.BLACK);
+            text[13] = new RectangleGraphicElement(16, 7, 1, 1, Color.BLACK);
+            //E
+            text[14] = new RectangleGraphicElement(19, 6, 1, 5, Color.BLACK);
+            text[15] = new RectangleGraphicElement(19, 6, 4, 1, Color.BLACK);
+            text[16] = new RectangleGraphicElement(19, 8, 4, 1, Color.BLACK);
+            text[17] = new RectangleGraphicElement(19, 10, 4, 1, Color.BLACK);
+            //O
+            text[18] = new RectangleGraphicElement(1, 13, 1, 5, Color.BLACK);
+            text[19] = new RectangleGraphicElement(1, 13, 4, 1, Color.BLACK);
+            text[20] = new RectangleGraphicElement(1, 17, 4, 1, Color.BLACK);
+            text[21] = new RectangleGraphicElement(4, 13, 1, 5, Color.BLACK);
+            //V
+            text[22] = new RectangleGraphicElement(7, 13, 1, 2, Color.BLACK);
+            text[23] = new RectangleGraphicElement(8, 15, 1, 2, Color.BLACK);
+            text[24] = new RectangleGraphicElement(9, 17, 1, 1, Color.BLACK);
+            text[25] = new RectangleGraphicElement(10, 15, 1, 2, Color.BLACK);
+            text[26] = new RectangleGraphicElement(11, 13, 1, 2, Color.BLACK);
+            //E
+            text[27] = new RectangleGraphicElement(13, 13, 4, 1, Color.BLACK);
+            text[28] = new RectangleGraphicElement(13, 13, 1, 5, Color.BLACK);
+            text[29] = new RectangleGraphicElement(13, 15, 4, 1, Color.BLACK);
+            text[30] = new RectangleGraphicElement(13, 17, 4, 1, Color.BLACK);
+            //R
+            text[31] = new RectangleGraphicElement(19, 13, 4, 1, Color.BLACK);
+            text[32] = new RectangleGraphicElement(19, 13, 1, 5, Color.BLACK);
+            text[33] = new RectangleGraphicElement(22, 13, 1, 3, Color.BLACK);
+            text[34] = new RectangleGraphicElement(19, 15, 4, 1, Color.BLACK);
+            text[35] = new RectangleGraphicElement(21, 16, 1, 1, Color.BLACK);
+            text[36] = new RectangleGraphicElement(22, 17, 1, 1, Color.BLACK);
+        }
 
         pillarsDown = new Pillar[15];
         pillarsUp = new Pillar[15];
@@ -94,10 +95,10 @@ public class FlappyBirdGame extends Game {
 
         pixelMatrix.setBackgroundColor(new Color(69, 99, 209));
         skull = new Skull(4, 4);
-        skullRect = new RectangleGraphicElement(0, 0, pixelMatrix.getWidth(), pixelMatrix.getHeight(), Color.BLACK);
-        graphicElements.add(skullRect);
-        graphicElements.add(skull);
-        rect = new RectangleGraphicElement(0, 0, 12, 12, Color.BLACK);
+        //skullRect = new RectangleGraphicElement(0, 0, pixelMatrix.getWidth(), pixelMatrix.getHeight(), Color.BLACK);
+        //graphicElements.add(skullRect);
+        //graphicElements.add(skull);
+        //rect = new RectangleGraphicElement(0, 0, 12, 12, Color.BLACK);
 
     }
 
@@ -105,10 +106,10 @@ public class FlappyBirdGame extends Game {
     public void nextGameStep() {
 
         //hier passiert alles:)
-        graphicElements.remove(skullRect);
-        graphicElements.remove(skull);
 
-        if (!gameOver) {
+        //graphicElements.remove(skullRect);
+        //graphicElements.remove(skull);
+        if (!collide) {
             bird.setY(bird.getY() + 1);
 
             //graphicElements.remove(rect);
@@ -121,7 +122,7 @@ public class FlappyBirdGame extends Game {
                     //bird.setColor(Color.BLACK);
                     System.out.println("hitDown");
                     System.out.println("bird y " + bird.getY());
-                    gameOver = true;
+                    collide = true;
                 }
             }
 
@@ -130,35 +131,45 @@ public class FlappyBirdGame extends Game {
                 if (bird.intersects(up)) {
                     System.out.println("hitUp");
                     System.out.println("bird y " + bird.getY());
-                    gameOver = true;
+                    collide = true;
                 }
             }
 
             if (bird.getY() < 0 || bird.getY()  > pixelMatrix.getHeight()) {
-                gameOver = true;
+                collide = true;
             }
 
-            if (gameOver) {
-                graphicElements.add(skullRect);
+            if (collide) {
+                //graphicElements.add(skullRect);
                 graphicElements.add(skull);
                 //graphicElements.add(rect);
-                for(int i = 0; i < text.length; i++) {
+                /*for(int i = 0; i < text.length; i++) {
                     graphicElements.add(text[i]);
-                }
+                }*/
                 bird.setColor(new Color(50,50,50));
             }
 
         }
 
-        if (gameOver) {
+        if (collide) {
             bird.setY(bird.getY() + 3);
 
+            if (bird.getY() > pixelMatrix.getHeight()) {
+                graphicElements.remove(skull);
+            }
+            if (bird.getY() > pixelMatrix.getHeight() && !drawnOneTime) {
+                for(int i = 0; i < text.length; i++) {
+                    graphicElements.add(text[i]);
+                }
+                drawnOneTime = true;
+            }
+
             if (bird.getY() > pixelMatrix.getHeight()+5) {
-                gameOver2 = true;
+                gameOver = true;
             }
         }
 
-        if (!gameOver2) {
+        if (!gameOver) {
             super.nextGameStep();
         }
     }
@@ -166,12 +177,13 @@ public class FlappyBirdGame extends Game {
     //hier fliegt der vogel
     @Override
     public void buzzered() {
-        if (!gameOver) {
+        if (!collide) {
             bird.setY(bird.getY() - 5);
-        } else if (gameOver && gameOver2) {
+        } else if (collide && gameOver) {
             //position des birds und des vogels einfach wieder auf normal setzen
+            collide = false;
             gameOver = false;
-            gameOver2 = false;
+            drawnOneTime = false;
             bird.setX(2);
             bird.setY(10);
             bird.setColor(Color.RED);
@@ -193,5 +205,30 @@ public class FlappyBirdGame extends Game {
     //haben wir nicht, müssen wir aber überschreiben
     //vielleicht kann man was lustiges machen wie farbe ändern, ist aber nicht wichtig
     @Override
-    public void wheelRotation(int rotationValue) {}
+    public void wheelRotation(int rotationValue) {
+        if (!collide) {
+            colorCounter += rotationValue;
+            if (colorCounter >= 0) {
+                bird.setColor(Color.RED);
+            }
+            if (colorCounter >= 4) {
+                bird.setColor(Color.YELLOW);
+            }
+            if (colorCounter >= 8) {
+                bird.setColor(Color.BLUE);
+            }
+            if (colorCounter >= 12) {
+                bird.setColor(Color.WHITE);
+            }
+            if (colorCounter >= 16) {
+                bird.setColor(Color.MAGENTA);
+            }
+            if (colorCounter >= 20) {
+                colorCounter = 0;
+            }
+            if (colorCounter < -4) {
+                colorCounter = 20;
+            }
+        }
+    }
 }
