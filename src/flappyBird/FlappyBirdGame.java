@@ -84,11 +84,11 @@ public class FlappyBirdGame extends Game {
         pillarsDown = new Pillar[15];
         pillarsUp = new Pillar[15];
         bird = new Bird(2, 10, 2, 2, Color.RED);
-        System.out.println("bird y " + bird.getY());
+        //System.out.println("bird y " + bird.getY());
 
         for (int i = 0; i < pillarsDown.length; i++) {
             int random = (int) (Math.random() *15);
-            System.out.println(random);
+            //System.out.println(random);
             pillarsDown[i] = new Pillar(30 + i*10, 9 + random, 3, 15, Color.GREEN);
             pillarsUp[i] = new Pillar(30 + i*10, 0, 3, 1+random, Color.GREEN);
         }
@@ -123,8 +123,8 @@ public class FlappyBirdGame extends Game {
             //check for collide with pillars down
             for (Pillar down : pillarsDown) {
                 if (bird.intersects(down)) {
-                    System.out.println("hitDown");
-                    System.out.println("bird y " + bird.getY());
+                    //System.out.println("hitDown");
+                    //System.out.println("bird y " + bird.getY());
                     collide = true;
                 }
             }
@@ -132,8 +132,8 @@ public class FlappyBirdGame extends Game {
             //check for collide with pillars up
             for (Pillar up : pillarsUp) {
                 if (bird.intersects(up)) {
-                    System.out.println("hitUp");
-                    System.out.println("bird y " + bird.getY());
+                    //System.out.println("hitUp");
+                    //System.out.println("bird y " + bird.getY());
                     collide = true;
                 }
             }
@@ -194,7 +194,7 @@ public class FlappyBirdGame extends Game {
             //resets the pillars every new game (random gap)
             for (int i = 0; i < pillarsDown.length; i++) {
                 int random = (int) (Math.random() *15);
-                System.out.println(random);
+                //System.out.println(random);
                 pillarsDown[i].setPillar(30 + i*10, 9 + random, 3, 15, Color.GREEN);
                 pillarsUp[i].setPillar(30 + i*10, 0, 3, 1+random, Color.GREEN);
             }
