@@ -6,7 +6,7 @@ import lumenaer.Game;
 import lumenaer.PixelMatrix;
 
 /**
- * where the game physics are programmed
+ * Where the game physics are programmed
  */
 public class FlappyBirdGame extends Game {
 
@@ -23,10 +23,9 @@ public class FlappyBirdGame extends Game {
     //overlapping the elements, if you change the background, the pillars are still there
 
     /**
-     * the game elements are initialised. there is the bird and pillars.
-     * the player is in control of the bird.
+     * The game elements (bird and pillars) are initialised here.
      *
-     * the game over screen is also initialised here as a skull and as text.
+     * The game over screen is also initialised here as a skull and as text.
      * @param matrix matrix for the lumenaer graphic
      */
     public FlappyBirdGame (PixelMatrix matrix) {
@@ -108,8 +107,7 @@ public class FlappyBirdGame extends Game {
     }
 
     /**
-     * recursive programming of a single game-step.
-     * moves the bird downwards and checks for collision, as well as triggers the game-over-screen
+     * Definition of a game-step
      */
     @Override
     public void nextGameStep() {
@@ -178,7 +176,7 @@ public class FlappyBirdGame extends Game {
     }
 
     /**
-     * moves the bird up for every click
+     * Moves the bird up for every click,
      * restarts the game if game over
      */
     @Override

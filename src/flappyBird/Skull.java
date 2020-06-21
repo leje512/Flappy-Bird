@@ -4,7 +4,7 @@ import graphics.Color;
 import graphics.SpriteGraphicElement;
 
 /**
- * a game-over screen
+ * A game-over screen
  */
 public class Skull extends SpriteGraphicElement {
 

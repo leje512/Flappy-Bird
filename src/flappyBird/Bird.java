@@ -5,7 +5,7 @@ import graphics.Color;
 import graphics.RectangleGraphicElement;
 
 /**
- * is controlled by the player
+ * Player character, is controlled by buzzering or mousewheel.
  */
 
 public class Bird extends RectangleGraphicElement {
@@ -21,7 +21,7 @@ public class Bird extends RectangleGraphicElement {
     public Bird (int x, int y, int width, int height, Color color) { super (x, y, width, height, color); }
 
     /**
-     * checks if there is a collision between the bird and a pillar
+     * Checks if there is a collision between the bird and a pillar
      * @param pillar the pillar, which gets tested for a collision
      * @return returns true if there is a collision
      */
