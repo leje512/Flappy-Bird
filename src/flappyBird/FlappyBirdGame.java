@@ -5,6 +5,9 @@ import graphics.RectangleGraphicElement;
 import lumenaer.Game;
 import lumenaer.PixelMatrix;
 
+/**
+ * where the game physics are programmed
+ */
 public class FlappyBirdGame extends Game {
 
     int colorCounter = 0;
@@ -19,7 +22,13 @@ public class FlappyBirdGame extends Game {
     Skull skull;
     //overlapping the elements, if you change the background, the pillars are still there
 
-
+    /**
+     * the game elements are initialised. there is the bird and pillars.
+     * the player is in control of the bird.
+     *
+     * the game over screen is also initialised here as a skull and as text.
+     * @param matrix matrix for the lumenaer graphic
+     */
     public FlappyBirdGame (PixelMatrix matrix) {
         super(matrix);
 
@@ -98,10 +107,12 @@ public class FlappyBirdGame extends Game {
 
     }
 
+    /**
+     * recursive programming of a single game-step.
+     * moves the bird downwards and checks for collision, as well as triggers the game-over-screen
+     */
     @Override
     public void nextGameStep() {
-
-        //hier passiert alles:)
 
         if (!collide) {
             //move bird down every game step
@@ -166,8 +177,6 @@ public class FlappyBirdGame extends Game {
         }
     }
 
-    //hier fliegt der vogel
-
     /**
      * moves the bird up for every click
      * restarts the game if game over
@@ -177,7 +186,7 @@ public class FlappyBirdGame extends Game {
         if (!collide) {
             bird.setY(bird.getY() - 5);
         } else if (collide && gameOver) {
-            //position des birds und des vogels einfach wieder auf normal setzen
+            //resets the position of the bird to his starting point
             collide = false;
             gameOver = false;
             drawnOneTime = false;

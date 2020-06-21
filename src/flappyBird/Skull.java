@@ -3,8 +3,16 @@ package flappyBird;
 import graphics.Color;
 import graphics.SpriteGraphicElement;
 
+/**
+ * a game-over screen
+ */
 public class Skull extends SpriteGraphicElement {
 
+    /**
+     *
+     * @param posX Startposition x-Coordinate
+     * @param posY Startposition Y-Coordinate
+     */
     public Skull (int posX, int posY){
         super(posX, posY);
         sprite = new Color[17][16]; // sprite matrix must be created here
